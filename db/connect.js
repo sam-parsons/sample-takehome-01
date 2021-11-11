@@ -6,7 +6,7 @@ const client = new Client(config);
 
 client
   .connect()
-  .then(() => console.log('connected'))
+  .then(() => console.log('connected', client['_connected']))
   .catch((err) => {
     throw new Error(err);
   });
