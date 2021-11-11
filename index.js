@@ -1,20 +1,25 @@
+require('dotenv').config();
 const express = require('express');
-const { Pool } = require('pg');
+const pool = require('./db/connect');
 const app = express();
-
 const PORT = process.env.PORT || 5000;
+const checkAndSeedDB = require('./db/seed');
+const timesheetController = require('./server/controllers/timesheet');
 
-const pool = new Pool({ // create connection to database
-  connectionString: process.env.DATABASE_URL,	// use DATABASE_URL environment variable from Heroku app 
-  ssl: {
-    rejectUnauthorized: false // don't check for SSL cert
-  }
-});
+// json parsins and static files
+app.use(express.json());
+app.use(express.static('build'));
 
-app.get('/', (req, res) => {
-    pool.query("SELECT * FROM timesheets")
-        .then(result => res.json(result))
-        .catch(err => console.log(err));
-});
+// seed table if doesn't exist
+(async function () {
+  await checkAndSeedDB(pool);
+})();
 
-app.listen(PORT, () => console.log("connected"));
+// Routes
+app.get('/api/timesheets', timesheetController.getAllEntries);
+
+app.get('/api/timesheets/:client', timesheetController.getOneEntry);
+
+app.post('/api/timesheets', timesheetController.createEntry);
+
+app.listen(PORT, () => console.log('connected'));
