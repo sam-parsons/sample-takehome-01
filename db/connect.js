@@ -18,6 +18,8 @@ const client = new Client(config);
 client
   .connect()
   .then(() => console.log('connected'))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    throw new Error(err);
+  });
 
 module.exports = { client };
