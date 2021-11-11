@@ -1,8 +1,6 @@
 const { client: pool } = require('../../db/connect');
 
 function getAllEntries(req, res) {
-  console.log(pool);
-  console.log(pool['_connected']);
   pool
     .query('SELECT * FROM timesheets')
     .then((result) => res.json(result.rows))
