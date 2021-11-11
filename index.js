@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const { client: pool } = require('./db/connect');
-const app = express();
 const PORT = process.env.PORT || 5000;
 const checkAndSeedDB = require('./db/seed');
 const timesheetController = require('./server/controllers/timesheet');
 
 const main = async function () {
+  const app = express();
+
   // json parsins and static files
   app.use(express.json());
   app.use(express.static('build'));
