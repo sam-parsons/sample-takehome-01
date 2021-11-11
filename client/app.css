@@ -1,3 +1,7 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 table {
   border-collapse: collapse;
   font-weight: 400;
@@ -10,17 +14,19 @@ tr {
 th,
 td {
   min-width: 150px;
-  padding: 6px;
+  padding: 10px;
 }
 
 td {
   font-weight: 500;
+  font-size: 0.85rem;
 }
 
 th {
   border: 1px solid rgb(179, 179, 179);
+  color: rgb(26, 26, 26);
   background-color: rgb(238, 238, 238);
-  font-size: 16px;
+  font-size: 0.75rem;
 }
 
 .project,
@@ -34,10 +40,32 @@ th {
   text-align: right;
 }
 
+.billable-amount {
+  font-weight: 600;
+}
+
+/* .billable-hours {
+  color: rgb(179, 179, 179);
+} */
+
+.billable-hour-space {
+  padding: 1px;
+}
+
+.billable-hour-percentage {
+  display: inline-block;
+  width: 65px;
+  color: rgb(128, 128, 128);
+}
+
+.billable-hour-amount {
+  color: rgb(80, 80, 80);
+}
+
 td.project,
 td.client,
 td.hours {
-  color: blue;
+  color: #0047ab;
 }
 
 .table-container {
