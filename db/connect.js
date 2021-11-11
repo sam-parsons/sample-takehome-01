@@ -1,12 +1,20 @@
-const { Pool } = require('pg');
+const { Pool, Client } = require('pg');
 
-// need to figure this out
-const pool = new Pool({
-  user: process.env.user,
-  host: 'localhost',
-  database: 'postgres',
-  password: process.env.password,
-  port: 5432,
-});
+let config = {};
 
-module.exports = pool;
+if (process.env.DATABASE_URL) {
+  config.connectionString = process.env.DATABASE_URL;
+} else {
+  config = {
+    user: process.env.user,
+    host: 'localhost',
+    database: 'postgres',
+    password: process.env.password,
+    port: 5432,
+  };
+}
+
+const client = new Client(config);
+client.connect().then(() => console.log('connected'));
+
+module.exports = { client };
