@@ -4,12 +4,39 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "csv-parse": "4.16.3",
+    "dotenv": "10.0.0",
     "express": "^4.17.1",
-    "pg": "^8.7.1"
+    "lts": "1.2.0",
+    "moment": "2.29.1",
+    "pg": "^8.7.1",
+    "pg-format": "1.0.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.16.0",
+    "@babel/preset-env": "7.16.0",
+    "@babel/preset-react": "7.16.0",
+    "babel-loader": "8.2.3",
+    "babel-polyfill": "6.26.0",
+    "concurrently": "6.3.0",
+    "css-loader": "6.5.1",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "5.5.0",
+    "nodemon": "2.0.15",
+    "style-loader": "3.3.1",
+    "url-loader": "4.1.1",
+    "webpack": "5.63.0",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-server": "4.4.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "start": "npm run build && node index.js",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "server": "nodemon index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
