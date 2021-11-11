@@ -4,7 +4,7 @@ import Row from './TableRow'
 
 export default ({ summaryData }) => {
   // get header data
-  const headerData = ["Project Name", "Client", "Hours", "Billable Hours", "Billable Amount"];
+  const headerData = ["Project", "Client", "Hours", "Billable Hours", "Billable Amount"];
 
   return <table>
     <Header headerData={headerData} />
