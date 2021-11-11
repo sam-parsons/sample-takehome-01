@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 5000;
 const checkAndSeedDB = require('./db/seed');
 const timesheetController = require('./server/controllers/timesheet');
 
-const main = async function () {
+const main = async () => {
   const app = express();
 
   // json parsins and static files
@@ -25,4 +25,6 @@ const main = async function () {
   app.listen(PORT, () => console.log(`PORT: ${PORT}`));
 };
 
-main().catch((err) => console.log(err));
+main().catch((err) => {
+  throw new Error(err);
+});
