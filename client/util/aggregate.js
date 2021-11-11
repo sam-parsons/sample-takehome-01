@@ -2,7 +2,7 @@ import round from './round';
 
 export default function aggregate(rows) {
   const data = {};
-  console.log(rows[0]);
+
   rows.forEach((row) => {
     if (!data.hasOwnProperty(row.client)) {
       data[row.client] = {};
@@ -27,7 +27,6 @@ export default function aggregate(rows) {
         2
       );
       // aggregate billable amount
-      // still have to fix rounding here
       data[row.client][row.project].billableAmount = round(
         data[row.client][row.project].billableAmount +
           row.hours * row.billable_rate,

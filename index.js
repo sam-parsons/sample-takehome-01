@@ -8,11 +8,11 @@ const timesheetController = require('./server/controllers/timesheet');
 const main = async () => {
   const app = express();
 
-  // json parsins and static files
+  // json parsing and static files
   app.use(express.json());
   app.use(express.static('build'));
 
-  // seed table if doesn't exist
+  // seed timesheets table if doesn't exist
   await checkAndSeedDB(pool);
 
   // Routes
