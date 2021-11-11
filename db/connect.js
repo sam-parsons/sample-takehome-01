@@ -1,4 +1,4 @@
-const { Pool, Client } = require('pg');
+const { Client } = require('pg');
 
 let config = {};
 
@@ -15,6 +15,9 @@ if (process.env.DATABASE_URL) {
 }
 
 const client = new Client(config);
-client.connect().then(() => console.log('connected'));
+client
+  .connect()
+  .then(() => console.log('connected'))
+  .catch((err) => console.log(err));
 
 module.exports = { client };
