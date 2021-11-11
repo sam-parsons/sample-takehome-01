@@ -22,8 +22,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        <div>Hello World</div>
+      <div className="table-container">
         {this.state.summaryData ? (
           <SummaryTable summaryData={this.state.summaryData} />
         ) : null}
