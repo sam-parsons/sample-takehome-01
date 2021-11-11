@@ -7,7 +7,7 @@ const client = new Client(config);
 
 client
   .connect()
-  .then(() => console.log('connected', client['_connected']))
+  .then(() => console.log('connected to db'))
   .catch((err) => {
     throw new Error(err);
   });
