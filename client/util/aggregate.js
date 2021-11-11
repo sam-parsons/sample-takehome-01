@@ -1,3 +1,5 @@
+import round from './round';
+
 export default function aggregate(rows) {
   const data = {};
   console.log(rows[0]);
@@ -34,8 +36,4 @@ export default function aggregate(rows) {
     }
   });
   return data;
-}
-
-function round(value, decimals) {
-  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
