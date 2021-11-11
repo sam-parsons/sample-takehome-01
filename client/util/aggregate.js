@@ -13,15 +13,29 @@ export default function aggregate(rows) {
       };
     }
     // aggregate hours
-    data[row.client][row.project].hours += row.hours;
+    data[row.client][row.project].hours = round(
+      data[row.client][row.project].hours + row.hours,
+      2
+    );
     // aggregate billable hours
     const isBillable = row.billable;
     if (isBillable) {
-      data[row.client][row.project].billableHours += row.hours;
+      data[row.client][row.project].billableHours = round(
+        data[row.client][row.project].billableHours + row.hours,
+        2
+      );
       // aggregate billable amount
-      data[row.client][row.project].billableAmount +=
-        row.hours * row.billable_rate;
+      // still have to fix rounding here
+      data[row.client][row.project].billableAmount = round(
+        data[row.client][row.project].billableAmount +
+          row.hours * row.billable_rate,
+        2
+      );
     }
   });
   return data;
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
