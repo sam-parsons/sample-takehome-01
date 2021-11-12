@@ -16,17 +16,20 @@ function getOneEntry(req, res) {
 
 function createEntry(req, res) {
   const resData = [
-    req.body.date,
     req.body.client,
     req.body.project,
+    req.body.firstName,
+    req.body.lastName,
     req.body.productCode,
     req.body.hours,
     req.body.billable,
-    req.body.billableHours,
+    req.body.billableRate,
   ];
   client
     .query(
-      'INSERT INTO timesheets (date, client, project, product_code, hours, billable, billableours) VALUES ($1, $2, $3, $4, $5, $6, $7);',
+      `INSERT INTO timesheets 
+        (date, client, project, first_name, last_name, product_code, hours, billable, billable_rate) 
+        VALUES (current_timestamp, $1, $2, $3, $4, $5, $6, $7, $8);`,
       resData
     )
     .then((result) => res.json(result))
