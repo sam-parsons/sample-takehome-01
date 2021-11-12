@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const { client: pool } = require('./db/connect');
+const { client } = require('./db/connect');
 const PORT = process.env.PORT || 5000;
 const checkAndSeedDB = require('./db/seed');
 const timesheetController = require('./server/controllers/timesheet');
@@ -13,7 +13,7 @@ const main = async () => {
   app.use(express.static('build'));
 
   // seed timesheets table if doesn't exist
-  await checkAndSeedDB(pool);
+  await checkAndSeedDB(client);
 
   // Routes
   app.get('/api/timesheets', timesheetController.getAllEntries);

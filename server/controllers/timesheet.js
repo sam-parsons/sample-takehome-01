@@ -1,14 +1,14 @@
-const { client: pool } = require('../../db/connect');
+const { client } = require('../../db/connect');
 
 function getAllEntries(req, res) {
-  pool
+  client
     .query('SELECT * FROM timesheets')
     .then((result) => res.json(result.rows))
     .catch((err) => console.log(err));
 }
 
 function getOneEntry(req, res) {
-  pool
+  client
     .query('SELECT * FROM timesheets WHERE client=$1', [req.params.client])
     .then((result) => res.json(result.rows))
     .catch((err) => console.log(err));
@@ -24,7 +24,7 @@ function createEntry(req, res) {
     req.body.billable,
     req.body.billableHours,
   ];
-  pool
+  client
     .query(
       'INSERT INTO timesheets (date, client, project, product_code, hours, billable, billableours) VALUES ($1, $2, $3, $4, $5, $6, $7);',
       resData
