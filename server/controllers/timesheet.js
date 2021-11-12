@@ -1,5 +1,17 @@
 const { client } = require('../../db/connect');
 
+// map used for bad INSERT requests
+const paramErrorMap = {
+  $1: 'client',
+  $2: 'project',
+  $3: 'firstName',
+  $4: 'lastName',
+  $5: 'productCode',
+  $6: 'hours',
+  $7: 'billable',
+  $8: 'billableRate',
+};
+
 function getAllEntries(req, res) {
   client
     .query('SELECT * FROM timesheets')
@@ -61,17 +73,6 @@ function createEntry(req, res) {
       return res.status(500).json('Internal error');
     });
 }
-
-const paramErrorMap = {
-  $1: 'client',
-  $2: 'project',
-  $3: 'firstName',
-  $4: 'lastName',
-  $5: 'productCode',
-  $6: 'hours',
-  $7: 'billable',
-  $8: 'billableRate',
-};
 
 module.exports = {
   getAllEntries,
