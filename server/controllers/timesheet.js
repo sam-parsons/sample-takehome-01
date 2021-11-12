@@ -4,7 +4,12 @@ function getAllEntries(req, res) {
   client
     .query('SELECT * FROM timesheets')
     .then((result) => res.json(result.rows))
-    .catch((err) => res.status(500).json('Internal error'));
+    .catch((err) =>
+      res.status(500).json({
+        message: 'Internal error',
+        err,
+      })
+    );
 }
 
 function getOneEntry(req, res) {
@@ -15,7 +20,12 @@ function getOneEntry(req, res) {
         return res.status(404).json('Client does not exist');
       return res.json(result.rows);
     })
-    .catch((err) => res.status(500).json('Internal error'));
+    .catch((err) =>
+      res.status(500).json({
+        message: 'Internal error',
+        err,
+      })
+    );
 }
 
 function createEntry(req, res) {
