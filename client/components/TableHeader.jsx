@@ -1,7 +1,16 @@
 import React from 'react';
 
+function formatHeaderClass(header) {
+  return header.replace(" ", "-").toLowerCase();
+}
+
 export default (props) => {
-  return <tr>
-    {props.headers.map(data => <th className={data.replace(" ", "-").toLowerCase()}>{data}</th>)}
-  </tr>;
+  return (
+    <tr>
+      {
+        // generate array of th elements
+        props.headers.map(header => <th className={formatHeaderClass(header)}>{header}</th>)
+      }
+    </tr>
+  ) ;
 }
