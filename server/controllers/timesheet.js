@@ -40,10 +40,28 @@ function createEntry(req, res) {
       return res.json(result);
     })
     .catch((err) => {
-      if (err.code === '22P02') return res.status(400).json('Bad request body');
+      if (err.code === '22P02') {
+        const badParam = paramErrorMap[err.where.slice(25, 27)];
+        return res.status(400).json({
+          reason: `Bad request body`,
+          message: err.message,
+          badParam,
+        });
+      }
       return res.status(500).json('Internal error');
     });
 }
+
+const paramErrorMap = {
+  $1: 'client',
+  $2: 'project',
+  $3: 'firstName',
+  $4: 'lastName',
+  $5: 'productCode',
+  $6: 'hours',
+  $7: 'billable',
+  $8: 'billableRate',
+};
 
 module.exports = {
   getAllEntries,
