@@ -15,7 +15,7 @@ async function checkAndSeedDB(pool) {
       parse(
         fs.readFileSync(path.resolve(__dirname, '../sample_data.csv')),
         async (err, output) => {
-          if (err) throw new Error(err); // throw error
+          if (err) throw new Error(err);
           const rows = formatDates(output.slice(2));
           // seed db
           await pool.query(format(seedTable, rows));

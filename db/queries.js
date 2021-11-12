@@ -9,7 +9,8 @@ SELECT EXISTS
 `;
 
 const createTable = `
-CREATE TABLE timesheets (
+CREATE TABLE timesheets 
+(
   date DATE,
   client VARCHAR,
   project VARCHAR,
@@ -24,7 +25,8 @@ CREATE TABLE timesheets (
 
 const seedTable = `
 INSERT INTO timesheets 
-( date, 
+( 
+  date, 
   client, 
   project, 
   project_code, 

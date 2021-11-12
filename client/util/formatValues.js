@@ -1,15 +1,20 @@
 import React from 'react';
 import round from './round';
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
 export function formatBillableHours(hours, billableHours) {
-  // need to handle if hours is zero so not to divide by zero
-  if (billableHours === 0) billableHours = '0.00';
+  if (billableHours === 0 || hours === 0) billableHours = '0.00';
+  const percentage = hours === 0 ? 0 : (billableHours / hours) * 100;
 
   return [
     <span className="billable-hour-amount">{billableHours}</span>,
     <span className="billable-hour-space"></span>,
     <div className="billable-hour-percentage">
-      {'(' + round((billableHours / hours) * 100, 0) + '%' + ')'}
+      {'(' + round(percentage, 0) + '%' + ')'}
     </div>,
   ];
 }
@@ -19,8 +24,3 @@ export function formatBillableAmount(amount) {
 
   return currencyFormatter.format(amount);
 }
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});

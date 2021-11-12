@@ -1,3 +1,4 @@
+// Returns a flattened version of aggregated timesheet data
 export default function flatten(summaryData) {
   const resultArr = [];
   Object.keys(summaryData).forEach((client) => {

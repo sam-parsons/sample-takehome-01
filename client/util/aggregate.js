@@ -1,5 +1,20 @@
 import round from './round';
+import flatten from './flatten';
 
+/**
+ * Accepts an array of timesheet entries
+ * Aggregates rows based on project name
+ *  - accumulating hours, billable hours, and billable amounts
+ *
+ * Returns a flattened version of the aggregate data as below
+ * {
+ *  project: "---",
+ *  client: "---",
+ *  hours: xx.xx,
+ *  billableHours: xxx.xx,
+ *  billableAmount: xxx.xx,
+ * }
+ */
 export default function aggregate(rows) {
   const data = {};
 
@@ -34,5 +49,5 @@ export default function aggregate(rows) {
       );
     }
   });
-  return data;
+  return flatten(data);
 }
