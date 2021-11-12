@@ -4,14 +4,18 @@ function getAllEntries(req, res) {
   client
     .query('SELECT * FROM timesheets')
     .then((result) => res.json(result.rows))
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(500).json('Internal error'));
 }
 
 function getOneEntry(req, res) {
   client
     .query('SELECT * FROM timesheets WHERE client=$1', [req.params.client])
-    .then((result) => res.json(result.rows))
-    .catch((err) => console.log(err));
+    .then((result) => {
+      if (result.rows.length === 0)
+        return res.status(404).json('Client does not exist');
+      return res.json(result.rows);
+    })
+    .catch((err) => res.status(500).json('Internal error'));
 }
 
 function createEntry(req, res) {
@@ -32,8 +36,13 @@ function createEntry(req, res) {
         VALUES (current_timestamp, $1, $2, $3, $4, $5, $6, $7, $8);`,
       resData
     )
-    .then((result) => res.json(result))
-    .catch((err) => console.log(err));
+    .then((result) => {
+      return res.json(result);
+    })
+    .catch((err) => {
+      if (err.code === '22P02') return res.status(400).json('Bad request body');
+      return res.status(500).json('Internal error');
+    });
 }
 
 module.exports = {
