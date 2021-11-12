@@ -2,11 +2,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/*
+* Table
+*/
 table {
   border-collapse: collapse;
   font-weight: 400;
 }
 
+.table-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+/*
+* Rows
+*/
 tr {
   border-bottom: 1px solid rgb(179, 179, 179);
 }
@@ -29,9 +42,18 @@ th {
   font-size: 0.75rem;
 }
 
+/*
+* Columns
+*/
 .project,
 .client {
   text-align: left;
+}
+
+td.project,
+td.client,
+td.hours {
+  color: #0047ab;
 }
 
 .hours,
@@ -43,10 +65,6 @@ th {
 .billable-amount {
   font-weight: 600;
 }
-
-/* .billable-hours {
-  color: rgb(179, 179, 179);
-} */
 
 .billable-hour-space {
   padding: 1px;
@@ -60,17 +78,4 @@ th {
 
 .billable-hour-amount {
   color: rgb(80, 80, 80);
-}
-
-td.project,
-td.client,
-td.hours {
-  color: #0047ab;
-}
-
-.table-container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-top: 5%;
 }
