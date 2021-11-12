@@ -28,7 +28,7 @@ function createEntry(req, res) {
   client
     .query(
       `INSERT INTO timesheets 
-        (date, client, project, first_name, last_name, product_code, hours, billable, billable_rate) 
+        (date, client, project, first_name, last_name, project_code, hours, billable, billable_rate) 
         VALUES (current_timestamp, $1, $2, $3, $4, $5, $6, $7, $8);`,
       resData
     )
