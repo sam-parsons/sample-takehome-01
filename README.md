@@ -1,5 +1,3 @@
-# Giant Machines Takehome Assignment
-
 ## Requirements
 - API
   - Get all timesheet entries
@@ -15,14 +13,16 @@
 ## Running the Code
 
 ### Cloud
-  - View the app live <a>here</a> - may take a couple seconds to warm up.
+  - View the app live <a href="https://gm-app-sp.herokuapp.com/">here</a> - may take a couple seconds to warm up.
 
 ### Locally
   - Clone this repository
-  - Install node module via npm i
-  - Start local PostgreSQL server
-    - Set DATABASE_URL variable in a .env file with database url
-  - Run npm run dev
+    - ```git clone https://github.com/sam-parsons/gm-app-sp.git```
+  - Install node modules 
+    - ```npm install```
+  - Start a local PostgreSQL server
+  - Set DATABASE_URL variable in a .env file on the top level of the directory, then
+    - ```npm run dev``` 
 
 <hr>
 
