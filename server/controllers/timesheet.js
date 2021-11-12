@@ -63,9 +63,10 @@ function createEntry(req, res) {
     })
     .catch((err) => {
       if (err.code === '22P02') {
-        console.log(err);
-        console.log(err.where);
-        const badParam = paramErrorMap[err.where.slice(25, 27)];
+        // where prop doesn't exist in deployed version
+        const badParam = err.where
+          ? paramErrorMap[err.where.slice(25, 27)]
+          : '';
         return res.status(400).json({
           reason: `Bad request body`,
           message: err.message,
