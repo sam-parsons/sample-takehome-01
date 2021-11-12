@@ -7,12 +7,14 @@ export default ({ summaryData }) => {
 
   return (
     <table>
-      <Header headers={headers} />
-      {
-        summaryData ? 
-        <RowContainer summaryData={summaryData} />
-        : null
-      }
+      <tbody>
+        <Header headers={headers} />
+        {
+          summaryData ? 
+          <RowContainer summaryData={summaryData} />
+          : null
+        }
+      </tbody>
     </table>
   );  
 }

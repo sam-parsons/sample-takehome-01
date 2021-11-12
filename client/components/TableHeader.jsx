@@ -9,7 +9,14 @@ export default (props) => {
     <tr>
       {
         // generate array of th elements
-        props.headers.map(header => <th className={formatHeaderClass(header)}>{header}</th>)
+        props.headers.map((header, i) => {
+          return (
+            <th className={formatHeaderClass(header)} 
+              key={"th" + i}>
+              {header}
+            </th>
+          ) 
+        })
       }
     </tr>
   ) ;
