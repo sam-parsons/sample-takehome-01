@@ -15,7 +15,7 @@ const paramErrorMap = {
 function getAllEntries(req, res) {
   client
     .query('SELECT * FROM timesheets')
-    .then((result) => res.json(result.rows))
+    .then((result) => res.status(200).json(result.rows))
     .catch((err) =>
       res.status(500).json({
         message: 'Internal error',
@@ -30,7 +30,7 @@ function getOneEntry(req, res) {
     .then((result) => {
       if (result.rows.length === 0)
         return res.status(404).json('Client does not exist');
-      return res.json(result.rows);
+      return res.status(200).json(result.rows);
     })
     .catch((err) =>
       res.status(500).json({
@@ -55,11 +55,12 @@ function createEntry(req, res) {
     .query(
       `INSERT INTO timesheets 
         (date, client, project, first_name, last_name, project_code, hours, billable, billable_rate) 
-        VALUES (current_timestamp, $1, $2, $3, $4, $5, $6, $7, $8);`,
+        VALUES (current_timestamp, $1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING *;`,
       resData
     )
     .then((result) => {
-      return res.json(result);
+      return res.json(result.rows);
     })
     .catch((err) => {
       if (err.code === '22P02') {
@@ -73,7 +74,10 @@ function createEntry(req, res) {
           badParam,
         });
       }
-      return res.status(500).json('Internal error');
+      return res.status(500).json({
+        message: 'Internal error',
+        err,
+      });
     });
 }
 
