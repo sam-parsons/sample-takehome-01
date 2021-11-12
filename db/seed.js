@@ -37,9 +37,11 @@ function formatDates(rows) {
     const year = '20' + dateArray[2];
     const day = Number(dateArray[1]) < 10 ? '0' + dateArray[1] : dateArray[1];
     const month = '0' + dateArray[0];
+    // create date string in YYYY-MM-DD format
     const date = moment(year + '-' + month + '-' + day)
       .toISOString()
       .slice(0, 10);
+    // reassign new date string to row
     row[0] = date;
   });
   return rows;

@@ -17,9 +17,7 @@ const main = async () => {
 
   // Routes
   app.get('/api/timesheets', timesheetController.getAllEntries);
-
   app.get('/api/timesheets/:client', timesheetController.getOneEntry);
-
   app.post('/api/timesheets', timesheetController.createEntry);
 
   app.listen(PORT, () => console.log(`PORT: ${PORT}`));

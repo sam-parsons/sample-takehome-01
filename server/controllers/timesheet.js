@@ -14,7 +14,6 @@ function getOneEntry(req, res) {
     .catch((err) => console.log(err));
 }
 
-// UPDATE
 function createEntry(req, res) {
   const resData = [
     req.body.date,
