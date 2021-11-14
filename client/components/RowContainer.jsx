@@ -1,5 +1,5 @@
 import React from 'react';
-import Row from './TableRow'
+import Row from './Row'
 
 export default ({ summaryData }) => {
   // generate array of Row components
@@ -10,7 +10,7 @@ export default ({ summaryData }) => {
           <Row 
             rowData={summaryData[key]} 
             rowClient={key} 
-            key={"row" + i} 
+            key={"row-" + i} 
           />
         ) 
       })
