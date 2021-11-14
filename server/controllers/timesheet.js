@@ -1,17 +1,5 @@
 const { client } = require('../../db/connect');
 
-// map used for bad INSERT requests
-const paramErrorMap = {
-  $1: 'client',
-  $2: 'project',
-  $3: 'firstName',
-  $4: 'lastName',
-  $5: 'productCode',
-  $6: 'hours',
-  $7: 'billable',
-  $8: 'billableRate',
-};
-
 function getAllEntries(req, res) {
   client
     .query('SELECT * FROM timesheets')
@@ -51,6 +39,7 @@ function createEntry(req, res) {
     req.body.billable,
     req.body.billableRate,
   ];
+
   client
     .query(
       `INSERT INTO timesheets 
@@ -60,7 +49,7 @@ function createEntry(req, res) {
       resData
     )
     .then((result) => {
-      return res.json(result.rows);
+      return res.status(200).json(result.rows);
     })
     .catch((err) => {
       if (err.code === '22P02') {
