@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './TableHeader';
+import Header from './Header';
 import RowContainer from './RowContainer'
 
 export default ({ summaryData }) => {
@@ -9,11 +9,7 @@ export default ({ summaryData }) => {
     <table>
       <tbody>
         <Header headers={headers} />
-        {
-          summaryData ? 
-          <RowContainer summaryData={summaryData} />
-          : null
-        }
+        <RowContainer summaryData={summaryData} />
       </tbody>
     </table>
   );  
